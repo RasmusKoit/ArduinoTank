@@ -35,4 +35,24 @@ function gameLoop() {
 
   start = requestAnimationFrame(gameLoop);
 }
+window.onkeydown = function keyboard(e) {
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (!stopped){
+      fetch('/stop');
+      stopped = true;
+    }
+    if (code === 87) { //w key
+        fetch('/forward');
+
+    } else if (code === 83) { //s key
+        fetch('/backward');
+
+    } else if (code === 65) { //a key
+        fetch('/left');
+
+    } else if (code === 68) { //d key
+        fetch('/right');
+
+    }
+};
 gameLoop();
