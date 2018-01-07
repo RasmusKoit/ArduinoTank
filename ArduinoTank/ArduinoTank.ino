@@ -12,13 +12,6 @@ void setup()
  pinMode(Motor1R, OUTPUT);   
  pinMode(Motor2L, OUTPUT);   
  pinMode(Motor2R, OUTPUT);
- GoForward();
- delay(1000);
- Right();
- delay(1000);
- GoForward();
- delay(1000);
- Break();
 }
 
 
@@ -27,7 +20,7 @@ void loop()
 
 }
 
-void GoForward()
+void Forward()
 {
  digitalWrite(Motor1R, HIGH);
  digitalWrite(Motor1L, LOW);
@@ -35,7 +28,7 @@ void GoForward()
  digitalWrite(Motor2L, LOW);
 }
 
-void GoBackward()
+void Backward()
 {
  digitalWrite(Motor1L, HIGH);
  digitalWrite(Motor1R, LOW);
