@@ -17,15 +17,14 @@ class TankControl:
     def Stop(self):
         self.ser.write(b'f')
     def Twerk(self):
-        for x in range(5):
-            self.Forward()
-            time.sleep(0.1)
-            self.Left()
-            time.sleep(0.1)
-            self.Backward()
-            time.sleep(0.1)
-            self.Right()
-            time.sleep(0.1)
+        self.Forward()
+        time.sleep(0.1)
+        self.Left()
+        time.sleep(0.1)
+        self.Backward()
+        time.sleep(0.1)
+        self.Right()
+        time.sleep(0.1)
 
 if __name__ == '__main__':
     t = TankControl('COM6')
