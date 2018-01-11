@@ -1,6 +1,11 @@
 var stopped = false;
 var w, a, s, d;
 
+function connect(callback) {
+  ws = new WebSocket("ws://172.20.20.119:5000/cmd");
+  ws.onopen = function(){console.log("Connected");callback();};
+}
+
 function buttonPressed(b) {
   if (typeof(b) == "object") {
     return b.pressed;
@@ -16,19 +21,19 @@ function gameLoop() {
   stopper();
   var gp = gamepads[0];
   if (buttonPressed(gp.buttons[12])) {
-      fetch('/forward');
+      ws.send('/forward');
       stopped = false;
   } else if (buttonPressed(gp.buttons[13])) {
-      fetch('/backward');
+      ws.send('/backward');
       stopped = false;
   } else if (buttonPressed(gp.buttons[14])) {
-      fetch('/left');
+      ws.send('/left');
       stopped = false;
   } else if (buttonPressed(gp.buttons[15])) {
-      fetch('/right');
+      ws.send('/right');
       stopped = false;
   } else if (buttonPressed(gp.buttons[1])) {
-      fetch('/twerk');
+      ws.send('/twerk');
       stopped = false;
   }
 
@@ -71,20 +76,20 @@ function keySender() {
     // Send command while key is true
     stopper();
     if (w) {
-        fetch('/forward');
+        ws.send('/forward');
     } else if (a) {
-        fetch('/left');
+        ws.send('/left');
     } else if (s) {
-        fetch('/backward');
+        ws.send('/backward');
     } else if (d) {
-        fetch('/right');
+        ws.send('/right');
     }
     setTimeout(stopper(), 500);
     start = requestAnimationFrame(keySender);
 }
 function stopper() {
     if (!stopped){
-        fetch('/stop');
+        ws.send('/stop');
         stopped = true;
     }
 }
@@ -99,5 +104,3 @@ function CrashStop() {
     stopper();
 
 }
-gameLoop();
-keySender();

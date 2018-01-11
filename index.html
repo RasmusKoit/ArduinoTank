@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>ArduinoTankCloud</title>
+    <script src="listener.js"></script>
 </head>
 <body>
 <h1>Tank controller</h1>
 Please choose your controller for today (keyboard or xbox controller)
-<script src="listener.js"></script>
+<br>
+    <button onclick="connect(gameLoop);">Controller</button>
+    <button onclick="connect(keySender);">Keyboard</button>
 </body>
 </html>
